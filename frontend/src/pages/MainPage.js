@@ -14,7 +14,7 @@ export default function MainPage() {
           <main>
 
             <HomePage />
-
+            
 
 
             </main>

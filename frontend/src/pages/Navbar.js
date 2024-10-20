@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import logo from '../assets/logo2.png'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,9 +7,9 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Evaluate Yourself", href: "/EvaluateYourself" },
-    { name: "Community", href: "/community" },
-    { name: "Mentors", href: "/mentors" },
-    { name: "Join Program", href: "/join" },
+    { name: "Community", href: "/Community" },
+    { name: "Mentors", href: "/Mentors" },
+    { name: "Join Program", href: "/JoinProgram" },
   ];
 
   return (
@@ -17,7 +17,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="flex-shrink-0">
+            <a href="/" className="flex-shrink-0 flex items-center">
+              {/* Adding the logo image */}
+              <img src={logo} alt="BizElevate Logo" className="h-10 w-10 mr-2" />
               <span className="text-2xl font-bold">BizElevate</span>
             </a>
           </div>
