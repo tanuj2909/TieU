@@ -9,7 +9,9 @@ const Navbar = () => {
     { name: "Evaluate Yourself", href: "/EvaluateYourself" },
     { name: "Community", href: "/Community" },
     { name: "Mentors", href: "/Mentors" },
+    { name: "Tools", href: "/Tools" },
     { name: "Join Program", href: "/JoinProgram" },
+    { name: "Resource", href: "/Resource" },
   ];
 
   return (
