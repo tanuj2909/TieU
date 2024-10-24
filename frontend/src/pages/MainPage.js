@@ -7,6 +7,7 @@ import KeyFreatures from './MainPage/KeyFeatures'
 import PersonalisedBot from './MainPage/PersonalisedBot'
 import ReviewSection from './MainPage/ReviewSection'
 import Footer from './MainPage/Footer'
+import AIsection from './MainPage/AIsection'
 
 
 export default function MainPage() {
@@ -22,6 +23,8 @@ export default function MainPage() {
 
             {/* <PersonalisedBot /> */}
 
+
+          <AIsection />
           <ReviewSection />
           <Footer />
 

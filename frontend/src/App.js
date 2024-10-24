@@ -18,6 +18,18 @@ import ItandSoftwareIndia from './country/India/ITandSoftwareIndustry'
 import USABusinessType from './country/Usa/BusinessTypesUsa'
 
 
+// AI SECTION INTRO PAGES
+import Outboundintro from '../src/Aisection/Outboundintro'
+import Inboundinto from '../src/Aisection/Inboundintro'
+import ChatSDRintro from '../src/Aisection/ChatsdrIntro'
+import LinkdinSDRintro from '../src/Aisection/LinkdinSdrIntro'
+import AiphoneAssistantintro from '../src/Aisection/AIphoneassistantintro'
+import AiRevOps from '../src/Aisection/AIrevopsintro'
+
+//AI SECTION EXPLORE PAGES
+import AIoutboundExplore from '../src/Aisection/AIoutboundExplore'
+import AIinboundExplore from './Aisection/AIinboundExplore'
+
 
 function App() {
   return (
@@ -39,11 +51,26 @@ function App() {
           <Route path="/Resource/India" element={<IndianBusinessType/>} />
           <Route path="/Resource/EcommerceResourceIndia" element={<EcommerceResourceIndia/>} />
           <Route path="/Resource/ITandSoftwareIndia" element={<ItandSoftwareIndia/>} />
+
+          /EricaAITools/AIOutboundSDR
          
 
 
 
           <Route path="/Resource/Usa" element={<USABusinessType/>} />
+
+
+        {/* AI SECTION INTRO PAGES */}
+          <Route path="/EricaAITools/AIOutboundSDR" element={<Outboundintro />} />
+          <Route path="/EricaAITools/AIInboundSDR" element={<Inboundinto />} />
+          <Route path="/EricaAITools/AIChatSDR" element={<ChatSDRintro />} />
+          <Route path="/EricaAITools/AILinkedInSDR" element={<LinkdinSDRintro />} />
+          <Route path="/EricaAITools/AIPhoneAssistant" element={<AiphoneAssistantintro/>} />
+          <Route path="/EricaAITools/AIRevenueOperations" element={<AiRevOps />} />
+
+        {/* AI SECTION EXPLORE PAGES */}
+        <Route path="/EricaAITools/AIOutboundSdrExplore" element={<AIoutboundExplore />} />
+        <Route path="/EricaAITools/AIinboundExplore" element={<AIinboundExplore />} />
         
       
 
