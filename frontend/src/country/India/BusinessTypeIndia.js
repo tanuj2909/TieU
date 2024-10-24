@@ -17,7 +17,7 @@ const businessCategories = [
   { name: 'Tourism & Hospitality', icon: FaPlane, color: 'bg-indigo-500', route: '/Resource/tourism', description: 'Travel and leisure. Explore opportunities in hospitality.' },
   { name: 'Logistics & Supply Chain', icon: FaTruck, color: 'bg-gray-500', route: '/Resource/logistics', description: 'Transport and delivery. Optimize the movement of goods.' },
   { name: 'FinTech', icon: FaMobileAlt, color: 'bg-lime-500', route: '/Resource/fintech', description: 'Financial technologies. Innovate the world of finance.' },
-  { name: 'IT & Software Development', icon: FaCode, color: 'bg-cyan-500', route: '/Resource/it-software', description: 'Tech development. Build cutting-edge software solutions.' },
+  { name: 'IT & Software Development', icon: FaCode, color: 'bg-cyan-500', route: '/Resource/ITandSoftwareIndia', description: 'Tech development. Build cutting-edge software solutions.' },
 ];
 
 const BusinessTypeIndia = () => {

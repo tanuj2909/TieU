@@ -13,7 +13,7 @@ import Tools from './pages/Tools'
 
 import IndianBusinessType from './country/India/BusinessTypeIndia'
 import EcommerceResourceIndia from './country/India/EcommerceResources'
-
+import ItandSoftwareIndia from './country/India/ITandSoftwareIndustry'
 
 import USABusinessType from './country/Usa/BusinessTypesUsa'
 
@@ -38,6 +38,8 @@ function App() {
       
           <Route path="/Resource/India" element={<IndianBusinessType/>} />
           <Route path="/Resource/EcommerceResourceIndia" element={<EcommerceResourceIndia/>} />
+          <Route path="/Resource/ITandSoftwareIndia" element={<ItandSoftwareIndia/>} />
+         
 
 
 
