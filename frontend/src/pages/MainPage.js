@@ -10,7 +10,10 @@ import Footer from './MainPage/Footer'
 import AIsection from './MainPage/AIsection'
 
 
+
 export default function MainPage() {
+  
+
     return (
       
         <div>
