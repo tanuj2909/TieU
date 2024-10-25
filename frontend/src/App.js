@@ -30,6 +30,12 @@ import AiRevOps from '../src/Aisection/AIrevopsintro'
 import AIoutboundExplore from '../src/Aisection/AIoutboundExplore'
 import AIinboundExplore from './Aisection/AIinboundExplore'
 
+//TOOLS PAGE
+import CrmTool from '../src/ToolsPage/CRMtool'
+import LeaveMangement from '../src/ToolsPage/LeaveManagement'
+import Analytics from '../src/ToolsPage/Analytics'
+
+
 
 function App() {
   return (
@@ -46,16 +52,17 @@ function App() {
           <Route path="/Community" element={<Community/>} />
           <Route path="/Resource" element={<Resource/>} />
 
-          /Resource/EcommerceIndia
-      
+  =
+
+      {/* RESOURCE SECTION INDIA */}
           <Route path="/Resource/India" element={<IndianBusinessType/>} />
           <Route path="/Resource/EcommerceResourceIndia" element={<EcommerceResourceIndia/>} />
           <Route path="/Resource/ITandSoftwareIndia" element={<ItandSoftwareIndia/>} />
 
-          /EricaAITools/AIOutboundSDR
+      
          
 
-
+     {/* RESOURCE SECTION USA */}
 
           <Route path="/Resource/Usa" element={<USABusinessType/>} />
 
@@ -71,6 +78,12 @@ function App() {
         {/* AI SECTION EXPLORE PAGES */}
         <Route path="/EricaAITools/AIOutboundSdrExplore" element={<AIoutboundExplore />} />
         <Route path="/EricaAITools/AIinboundExplore" element={<AIinboundExplore />} />
+
+
+        {/* TOOLS PAGE */}
+        <Route path="/Tools/CRM" element={<CrmTool />} />
+        <Route path="/Tools/LeaveMangement" element={<LeaveMangement/>} />
+        <Route path="/Tools/Analytics" element={< Analytics/>} />
         
       
 

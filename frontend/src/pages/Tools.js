@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faSearch, faBriefcase, faChartLine, faEnvelope, 
+import {
+  faSearch, faBriefcase, faChartLine, faEnvelope,
   faCalendar, faClipboard, faHeadset, faCode, faCloud,
-  faUsers, faFileInvoiceDollar, faCogs, faTasks, 
+  faUsers, faFileInvoiceDollar, faCogs, faTasks,
   faComments, faShoppingCart, faLock, faBusinessTime,
   faIdCard, faSync
 } from '@fortawesome/free-solid-svg-icons';
 
 const products = [
-  { name: 'Business Suite', icon: faBriefcase, color: 'bg-purple-500' },
-  { name: 'Analytics', icon: faChartLine, color: 'bg-blue-500' },
-  { name: 'Mail Pro', icon: faEnvelope, color: 'bg-green-500' },
-  { name: 'Calendar', icon: faCalendar, color: 'bg-yellow-500' },
-  { name: 'Project Manager', icon: faClipboard, color: 'bg-red-500' },
-  { name: 'Support Desk', icon: faHeadset, color: 'bg-indigo-500' },
-  { name: 'Developer Tools', icon: faCode, color: 'bg-pink-500' },
-  { name: 'Cloud Storage', icon: faCloud, color: 'bg-teal-500' },
-  { name: 'CRM', icon: faUsers, color: 'bg-orange-500' }, // Customer Relationship Management
-  { name: 'Finance', icon: faFileInvoiceDollar, color: 'bg-green-600' }, // Finance tools
-  { name: 'Automation', icon: faSync, color: 'bg-blue-600' }, // Workflow automation
-  { name: 'HR Management', icon: faIdCard, color: 'bg-purple-600' }, // Human Resource management
-  { name: 'E-commerce', icon: faShoppingCart, color: 'bg-yellow-600' }, // E-commerce platform
-  { name: 'Task Management', icon: faTasks, color: 'bg-red-600' }, // Task and project management
-  { name: 'Security', icon: faLock, color: 'bg-teal-600' }, // Security tools
-  { name: 'Collaboration', icon: faComments, color: 'bg-indigo-600' }, // Collaboration tools
-  { name: 'Time Tracking', icon: faBusinessTime, color: 'bg-pink-600' }, // Time tracking tools
+  { name: 'CRM', icon: faUsers, color: 'bg-orange-500', path: '/Tools/CRM' },
+  { name: 'HR Management', icon: faIdCard, color: 'bg-purple-600', path: '/Tools/LeaveMangement' },
+  { name: 'Business Suite', icon: faBriefcase, color: 'bg-purple-500', path: 'Tools/' },
+  { name: 'Analytics', icon: faChartLine, color: 'bg-blue-500', path: '/Tools/Analytics' },
+  { name: 'Mail Pro', icon: faEnvelope, color: 'bg-green-500', path: '/mail-pro' },
+  { name: 'Calendar', icon: faCalendar, color: 'bg-yellow-500', path: '/calendar' },
+  { name: 'Project Manager', icon: faClipboard, color: 'bg-red-500', path: '/project-manager' },
+  { name: 'Support Desk', icon: faHeadset, color: 'bg-indigo-500', path: '/support-desk' },
+  { name: 'Developer Tools', icon: faCode, color: 'bg-pink-500', path: '/developer-tools' },
+  { name: 'Cloud Storage', icon: faCloud, color: 'bg-teal-500', path: '/cloud-storage' },
+  { name: 'Finance', icon: faFileInvoiceDollar, color: 'bg-green-600', path: '/finance' },
+  { name: 'Automation', icon: faSync, color: 'bg-blue-600', path: '/automation' },
+
+  { name: 'E-commerce', icon: faShoppingCart, color: 'bg-yellow-600', path: '/ecommerce' },
+  { name: 'Task Management', icon: faTasks, color: 'bg-red-600', path: '/task-management' },
+  { name: 'Security', icon: faLock, color: 'bg-teal-600', path: '/security' },
+  { name: 'Collaboration', icon: faComments, color: 'bg-indigo-600', path: '/collaboration' },
+  { name: 'Time Tracking', icon: faBusinessTime, color: 'bg-pink-600', path: '/time-tracking' },
 ];
 
 const Tools = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const filtered = products.filter(product =>
@@ -69,7 +71,7 @@ const Tools = () => {
               className={`${product.color} rounded-lg p-6 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl`}
               whileHover={{ rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedProduct(product)}
+              onClick={() => navigate(product.path)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -82,33 +84,6 @@ const Tools = () => {
             </motion.div>
           ))}
         </div>
-
-        {selectedProduct && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedProduct(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className={`${selectedProduct.color} rounded-lg p-8 max-w-md w-full`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FontAwesomeIcon icon={selectedProduct.icon} className="text-6xl mb-4" />
-              <h2 className="text-3xl font-bold mb-4">{selectedProduct.name}</h2>
-              <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <button className="bg-white text-gray-900 px-4 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors">
-                Learn More
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
 
         <footer className="mt-16 text-center">
           <p className="text-xl">Empower your business with our suite of innovative solutions.</p>
