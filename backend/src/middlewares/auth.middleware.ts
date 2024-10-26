@@ -6,11 +6,8 @@ import { db } from "../utils/db";
 import { generateAccessToken } from "../utils/user.js";
 import { User } from "@prisma/client";
 
-interface AuthRequest extends Request {
-    user?: Partial<User>;
-}
 
-export const verifyJWT = asyncHandler(async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const verifyJWT = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
     
         const token: string | undefined = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
@@ -57,10 +54,6 @@ export const verifyJWT = asyncHandler(async (req: AuthRequest, res: Response, ne
             }
 
             res.cookie("accessToken", newAccessToken, options);
-
-            const { password, refreshToken, ...safeUser } = user
-
-            req.user = safeUser
             req.headers["id"] = user.id
             next();
             return;
@@ -78,11 +71,10 @@ export const verifyJWT = asyncHandler(async (req: AuthRequest, res: Response, ne
             throw new ApiError(401, "Invalid Access Token");
         }
 
-        const { password, refreshToken, ...safeUser } = user
-        req.user = safeUser;
         req.headers["id"] = user.id
         next();
-    } catch {
+    } catch(error) {
+        if(error instanceof ApiError) throw error
         throw new ApiError(401, "Invalid token");
     }
 });
