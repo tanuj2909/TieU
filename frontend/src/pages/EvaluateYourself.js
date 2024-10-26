@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
+import Navbar from './Navbar';
+
 const questions = [
   {
     id: 1,
@@ -40,6 +42,7 @@ const questions = [
 ];
 
 const EvaluateYourself = () => {
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -114,6 +117,10 @@ const EvaluateYourself = () => {
   };
 
   return (
+    <>
+
+      <Navbar />
+  
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 flex flex-col items-center justify-center p-4">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
@@ -130,6 +137,8 @@ const EvaluateYourself = () => {
       )}
       {quizCompleted ? renderResults() : renderQuestion()}
     </div>
+
+    </>
   );
 };
 
