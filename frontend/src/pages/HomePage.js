@@ -68,9 +68,9 @@ const BusinessHomePage = () => {
         </motion.div>
       </div>
       
-      {/* <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center text-white relative z-10">
+       <div className="container mx-auto px-4 h-full flex flex-col  items-center text-black relative z-10 mt-0 ">
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold  text-center mt-0 mb-60"
+          className="text-5xl md:text-7xl font-bold  text-center mt-0 "
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -79,7 +79,7 @@ const BusinessHomePage = () => {
         </motion.h1>
         
         <motion.p 
-          className="text-xl md:text-2xl mb-12 text-center max-w-2xl"
+          className="text-xl md:text-2xl  text-center max-w-2xl"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -108,8 +108,8 @@ const BusinessHomePage = () => {
             Explore Services
           </motion.button>
         </div>
-      </div> */}
-      
+      </div> 
+       
       {/* <div className="absolute bottom-40 left-0 right-0 flex justify-center space-x-12 pb-12">
         {['Retail', 'Services', 'Local Delivery'].map((item, index) => (
           <motion.div

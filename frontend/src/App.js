@@ -36,6 +36,15 @@ import LeaveMangement from '../src/ToolsPage/LeaveManagement'
 import Analytics from '../src/ToolsPage/Analytics'
 
 
+//COURSES PAGE
+import DigitalMarketingCourse from '../src/Tutorials/Video/DigitalMarketingCourse'
+
+
+// ASSIGNMETS SECTION
+import FinancialPlanning from '../src/Tutorials/Assignment/FinancialPlanning'
+
+// CASE STUDY
+import LocalCafeSuccessStory from '../src/Tutorials/CaseStudy/LoaclCafe'
 
 function App() {
   return (
@@ -84,8 +93,16 @@ function App() {
         <Route path="/Tools/CRM" element={<CrmTool />} />
         <Route path="/Tools/LeaveMangement" element={<LeaveMangement/>} />
         <Route path="/Tools/Analytics" element={< Analytics/>} />
-        
-      
+
+
+        {/* COURSE PAGES */}
+        <Route path="/Course/DigitalMarketing" element={<DigitalMarketingCourse />} />
+
+        {/* ASSIGNMENTS SECTION */}
+        <Route path="/Assignments/FinancialPlanning" element={<FinancialPlanning />} />
+
+        {/* CASE STUDIES */}
+        <Route path="/CaseStudy/LocalCafe" element={<LocalCafeSuccessStory />} />
 
       </Routes>
 

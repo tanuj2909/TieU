@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { RocketLaunchIcon, ChatBubbleLeftRightIcon, PhoneIcon, CurrencyDollarIcon, UserGroupIcon, InboxIcon } from '@heroicons/react/24/outline';
 
+import Erica from '../../assets/erica02.png';
+
 const services = [
   { name: 'AI Outbound SDR', description: 'Automates outbound sales outreach to engage prospects efficiently.', icon: InboxIcon, route: '/EricaAITools/AIOutboundSDR' },
   { name: 'AI Inbound SDR', description: 'Handles incoming sales leads with fast, intelligent responses.', icon: ChatBubbleLeftRightIcon, route: '/EricaAITools/AIInboundSDR' },
@@ -52,9 +54,9 @@ const AIsection = () => {
             className="flex justify-center"
           >
             <img
-              src="/placeholder.svg?height=400&width=400"
+              src={Erica}
               alt="AI Assistant Illustration"
-              className="max-w-full h-auto rounded-lg shadow-lg"
+              className="w-40 h-100 rounded-lg "
             />
           </motion.div>
         </div>
