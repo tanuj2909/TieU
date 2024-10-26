@@ -116,14 +116,7 @@ const CreativeFooter = () => {
         </div>
       </div>
 
-      <motion.button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg transition-colors duration-300"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <FontAwesomeIcon icon={faArrowUp} />
-      </motion.button>
+    
     </footer>
   );
 };

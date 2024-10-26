@@ -9,6 +9,8 @@ import ReviewSection from './MainPage/ReviewSection'
 import Footer from './MainPage/Footer'
 import AIsection from './MainPage/AIsection'
 
+import Chatbot from '../Aisection/AIChatbot';
+
 
 
 export default function MainPage() {
@@ -22,6 +24,7 @@ export default function MainPage() {
           <main>
 
             <HomePage />
+            <Chatbot />
             <KeyFreatures />
 
             {/* <PersonalisedBot /> */}
