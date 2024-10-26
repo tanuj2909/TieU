@@ -9,7 +9,7 @@ import Mentors from './pages/Mentors'
 import Community from './pages/Community'
 import Resource from './pages/ResourcePage'
 import Tools from './pages/Tools'
-
+import { RecoilRoot, atom } from 'recoil'
 
 import IndianBusinessType from './country/India/BusinessTypeIndia'
 import EcommerceResourceIndia from './country/India/EcommerceResources'
@@ -34,12 +34,15 @@ import AIinboundExplore from './Aisection/AIinboundExplore'
 import CrmTool from '../src/ToolsPage/CRMtool'
 import LeaveMangement from '../src/ToolsPage/LeaveManagement'
 import Analytics from '../src/ToolsPage/Analytics'
+import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
 
 
 
 function App() {
   return (
     <>
+    <RecoilRoot>
      <Router>
         <Routes>
          
@@ -51,6 +54,8 @@ function App() {
           <Route path="/Tools" element={<Tools/>} />
           <Route path="/Community" element={<Community/>} />
           <Route path="/Resource" element={<Resource/>} />
+          <Route path="/login" element={<Auth/>} />
+          <Route path="/dashboard" element={<Dashboard/>} />
 
   =
 
@@ -92,8 +97,14 @@ function App() {
       
      
 </Router>
+</RecoilRoot>
     </>
   );
 }
+
+export const userState = atom({
+  key: 'userState', 
+  default: JSON.parse(localStorage.getItem('userState')) || null
+})
 
 export default App;

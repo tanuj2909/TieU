@@ -9,163 +9,197 @@ import bcrypt from 'bcrypt'
 
 
 const registerUser = asyncHandler(async (req, res) => {
+    try {
+        const input = req.body
 
-    const input = req.body
-
-    const result = signupSchema.safeParse(input)
-    
-    if(!result.success) {
-        throw new ApiError(400, "All fields are required")
-    }
-
-    const {name, email, password} = result.data
-
-    const existingUser = await db.user.findUnique({
-        where: {
-            email
+        const result = signupSchema.safeParse(input)
+        
+        if(!result.success) {
+            throw new ApiError(400, "All fields are required")
         }
-    })
 
-    if (existingUser) {
-        throw new ApiError(409, "User with email or username already exists")
-    }
+        const {name, email, password} = result.data
 
-    
-    const user = await db.user.create({
-        data: {
-            name: name,
-            password: await bcrypt.hash(password, 10),
-            email: email
-        },
-        select: {
-            id: true,
-            name: true,
-            email: true
+        const existingUser = await db.user.findUnique({
+            where: {
+                email
+            }
+        })
+
+        if (existingUser) {
+            throw new ApiError(409, "User with email or username already exists")
         }
-    })
+
+        
+        const user = await db.user.create({
+            data: {
+                name: name,
+                password: await bcrypt.hash(password, 10),
+                email: email
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true
+            }
+        })
 
 
-    if (!user) {
-        throw new ApiError(500, "Something went wrong while registering the user")
-    }
-    
-    
-    const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user.id)
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
-
-    await db.user.update({
-        where: {
-            id: user.id,
-        }, 
-        data: {
-            refreshToken
+        if (!user) {
+            throw new ApiError(500, "Something went wrong while registering the user")
         }
-    })
+        
+        
+        const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user.id)
+        const options = {
+            httpOnly: true,
+            secure: true
+        }
 
-    return res
-        .status(201)
-        .cookie("accessToken", accessToken, options)
-        .cookie("refreshToken", refreshToken, options)
-        .json(
-            new ApiResponse(200, {user, accessToken, refreshToken}, "User registered Successfully")
-        )
+        await db.user.update({
+            where: {
+                id: user.id,
+            }, 
+            data: {
+                refreshToken
+            }
+        })
+
+        return res
+            .status(201)
+            .cookie("accessToken", accessToken, options)
+            .cookie("refreshToken", refreshToken, options)
+            .json(
+                new ApiResponse(200, {user, accessToken, refreshToken}, "User registered Successfully")
+            )
+    } catch(error) {
+        if(error instanceof ApiError) {
+            throw error;
+        } else {
+            throw new ApiError(500, "Internal Server Error");
+        }
+    }
+    
 
 })
 
 
 const loginUser = asyncHandler(async (req, res) =>{
 
+    try{
+        const input = req.body
 
-    const input = req.body
-
-    const result = loginSchema.safeParse(input)
-    
-    if(!result.success) {
-        throw new ApiError(400, "Invalid input")
-    }
-    
-    const { email, password } = result.data
-
-
-    const user = await db.user.findUnique({
-        where: {
-            email
+        const result = loginSchema.safeParse(input)
+        
+        if(!result.success) {
+            throw new ApiError(400, "Invalid input")
         }
-    })
+        
+        const { email, password } = result.data
 
 
-    if (!user) {
-        throw new ApiError(404, "User does not exist")
-    }
-    
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+        const user = await db.user.findUnique({
+            where: {
+                email
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                password: true
+            }
+        })
 
-    if (!isPasswordValid) {
-        throw new ApiError(401, "Invalid user credentials")
-    }
 
-    const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user.id)
-
-
-    const loggedInUser = await db.user.findUnique({
-        where: {
-            id: user.id
-        },
-        select: {
-            id: true,
-            name: true,
-            email: true
+        if (!user) {
+            throw new ApiError(404, "User does not exist")
         }
-    })
+        
+        const isPasswordValid = await bcrypt.compare(password, user.password)
 
-    const options = {
-        httpOnly: true,
-        secure: true
+        if (!isPasswordValid) {
+            throw new ApiError(401, "Invalid user credentials")
+        }
+
+        const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user.id)
+
+        const loggedInUser = await db.user.update({
+            where: {
+                id: user.id,
+            }, 
+            data: {
+                refreshToken
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true
+            }
+        })
+
+        if(!loggedInUser) {
+            throw new ApiError(500, "Internal server Error")
+        }
+
+        const options = {
+            httpOnly: true,
+            secure: true
+        }
+
+        return res
+            .status(200)
+            .cookie("accessToken", accessToken, options)
+            .cookie("refreshToken", refreshToken, options)
+            .json(
+                new ApiResponse(200, { user: loggedInUser, accessToken, refreshToken }, "User logged In Successfully")
+            )
+    } catch(error) {
+        if(error instanceof ApiError) {
+            throw error;
+        } else {
+            throw new ApiError(500, "Internal Server Error");
+        }
     }
-
-    return res
-        .status(200)
-        .cookie("accessToken", accessToken, options)
-        .cookie("refreshToken", refreshToken, options)
-        .json(
-            new ApiResponse(200, { user: loggedInUser, accessToken, refreshToken }, "User logged In Successfully")
-        )
 
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
+    try {
+        const input = req.headers["id"]
 
-    const input = req.headers["id"]
+        const result = logoutSchema.safeParse(input)
 
-    const result = logoutSchema.safeParse(input)
-
-    if(!result.success) {
-        throw new ApiError(400, "Invalid Input")
-    }
-    const id = result.data
-
-    await db.user.update({
-        where: {
-            id
-        },
-        data: {
-            refreshToken: null
+        if(!result.success) {
+            throw new ApiError(400, "Invalid Input")
         }
-    })
+        const id = result.data
 
-    const options = {
-        httpOnly: true,
-        secure: true
+        await db.user.update({
+            where: {
+                id
+            },
+            data: {
+                refreshToken: null
+            }
+        })
+
+        const options = {
+            httpOnly: true,
+            secure: true
+        }
+
+        return res
+            .status(200)
+            .clearCookie("accessToken", options)
+            .clearCookie("refreshToken", options)
+            .json(new ApiResponse(200, {}, "User logged Out"))
+    } catch(error) {
+        if(error instanceof ApiError) {
+            throw error;
+        } else {
+            throw new ApiError(500, "Internal Server Error");
+        }
     }
-
-    return res
-        .status(200)
-        .clearCookie("accessToken", options)
-        .clearCookie("refreshToken", options)
-        .json(new ApiResponse(200, {}, "User logged Out"))
 })
 
 export {
