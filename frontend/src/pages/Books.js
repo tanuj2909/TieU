@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import Navbar from './Navbar';
+
 const books = [
   {
     id: 1,
@@ -67,6 +69,9 @@ const Books = () => {
   }, [searchTerm]);
 
   return (
+    <>
+
+    <Navbar />
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 p-8">
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
@@ -128,6 +133,8 @@ const Books = () => {
         ))}
       </div>
     </div>
+
+    </>
   );
 };
 
