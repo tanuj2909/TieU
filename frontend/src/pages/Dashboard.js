@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
-import { FiUser, FiBook, FiBarChart2, FiMenu, FiBell, FiSettings, FiChevronRight, FiDollarSign, FiUsers, FiTrendingUp } from 'react-icons/fi'
+import React, { useState, useEffect } from 'react'
+import { FiUser, FiMenu, FiBell, FiChevronRight, FiDollarSign, FiUsers, FiTrendingUp } from 'react-icons/fi'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { useRecoilValue } from 'recoil'
 import { userState } from '../App'
-import { redirect } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import Navbar from './Navbar'
 
 export default function Dashboard() {
   const user = useRecoilValue(userState);
-  if(!user) redirect("/login")
-  
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user) {
+    return null; 
+  }
+  
 
   const userProfile = {
     name: user.name,
@@ -67,7 +76,6 @@ export default function Dashboard() {
       ]
     },
   ]
-
   return (
     <>
       <Navbar />

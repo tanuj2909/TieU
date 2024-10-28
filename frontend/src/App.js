@@ -56,13 +56,13 @@ function App() {
         <Routes>
          
           <Route path="/" element={<MainPage/>} />
-          <Route path="/EvaluateYourself" element={<EvaluateYourself/>} />
-          <Route path="/Books" element={<Books/>} />
-          <Route path="/JoinProgram" element={<JoinProgram/>} />
-          <Route path="/Mentors" element={<Mentors/>} />
-          <Route path="/Tools" element={<Tools/>} />
-          <Route path="/Community" element={<Community/>} />
-          <Route path="/Resource" element={<Resource/>} />
+          <Route path="/audit" element={<EvaluateYourself/>} />
+          <Route path="/books" element={<Books/>} />
+          <Route path="/programs" element={<JoinProgram/>} />
+          <Route path="/mentors" element={<Mentors/>} />
+          <Route path="/tools" element={<Tools/>} />
+          <Route path="/community" element={<Community/>} />
+          <Route path="/resources" element={<Resource/>} />
           <Route path="/login" element={<Auth/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
 

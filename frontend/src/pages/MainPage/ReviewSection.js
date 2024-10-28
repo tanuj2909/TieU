@@ -8,28 +8,28 @@ const reviews = [
     id: 1,
     name: "Emily Johnson",
     role: "CEO, TechStart",
-    image: "https://images.public.blob.vercel-storage.com/review-emily-YDQR1/review-emily-2YDQR1YDQR1.jpg",
+    image: "person.png",
     text: "This platform has revolutionized our workflow. The AI assistant is like having a genius on our team 24/7!",
   },
   {
     id: 2,
     name: "Michael Chen",
     role: "Founder, GreenEco",
-    image: "https://images.public.blob.vercel-storage.com/review-michael-YDQR1/review-michael-2YDQR1YDQR1.jpg",
+    image: "person.png",
     text: "I'm amazed at how intuitive and powerful this tool is. It's helped us scale our operations effortlessly.",
   },
   {
     id: 3,
     name: "Sophia Rodriguez",
     role: "CMO, FashionForward",
-    image: "https://images.public.blob.vercel-storage.com/review-sophia-YDQR1/review-sophia-2YDQR1YDQR1.jpg",
+    image: "person.png",
     text: "The personalized insights have been game-changing for our marketing strategies. Highly recommended!",
   },
   {
     id: 4,
     name: "Alex Thompson",
     role: "CTO, DataDrive",
-    image: "https://images.public.blob.vercel-storage.com/review-alex-YDQR1/review-alex-2YDQR1YDQR1.jpg",
+    image: "person.png",
     text: "As a tech enthusiast, I'm impressed by the advanced capabilities. It's truly cutting-edge stuff!",
   },
 ];
@@ -97,7 +97,7 @@ const ReviewCarousel = () => {
                 <img
                   src={reviews[currentIndex].image}
                   alt={reviews[currentIndex].name}
-                  className="w-full h-full object-cover rounded-full border-4 border-purple-500"
+                  className="w-full h-full object-cover rounded-full "
                 />
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
                   <FontAwesomeIcon icon={faQuoteLeft} className="text-white text-2xl" />

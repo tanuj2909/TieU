@@ -15,7 +15,7 @@ const products = [
   { name: 'CRM', icon: faUsers, color: 'bg-orange-500', path: '/Tools/CRM' },
   { name: 'HR Management', icon: faIdCard, color: 'bg-purple-600', path: '/Tools/LeaveMangement' },
   { name: 'Business Suite', icon: faBriefcase, color: 'bg-purple-500', path: 'Tools/' },
-  { name: 'Analytics', icon: faChartLine, color: 'bg-blue-500', path: '/Tools/Analytics' },
+  { name: 'Analytics', icon: faChartLine, color: 'bg-blue-500', path: '/Tools' },
   { name: 'Mail Pro', icon: faEnvelope, color: 'bg-green-500', path: '/mail-pro' },
   { name: 'Calendar', icon: faCalendar, color: 'bg-yellow-500', path: '/calendar' },
   { name: 'Project Manager', icon: faClipboard, color: 'bg-red-500', path: '/project-manager' },
