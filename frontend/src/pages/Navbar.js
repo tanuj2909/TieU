@@ -40,7 +40,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {  
-      const response = await axios.post('http://localhost:8000/api/user/logout', {}, {
+      const response = await axios.post('https://tieu.onrender.com//api/user/logout', {}, {
         withCredentials: true,
       })
       if(response.status === 200) {
