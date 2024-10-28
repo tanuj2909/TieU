@@ -54,7 +54,7 @@ export default function Auth() {
     const res = loginSchema.safeParse(loginFormData);
     if (res.success) {
       try {
-        const response = await axios.post('https://tieu.onrender.com//api/user/login', res.data, {
+        const response = await axios.post('https://tieu.onrender.com/api/user/login', res.data, {
           withCredentials: true,
         });
 
@@ -92,9 +92,10 @@ export default function Auth() {
     const res = registerSchema.safeParse(registerFormData);
     if (res.success) {
       try {
-        const response = await axios.post('https://tieu.onrender.com//api/user/register', res.data, {
+        const response = await axios.post('https://tieu.onrender.com/api/user/register', res.data, {
           withCredentials: true,
         });
+        
         if(response.status === 200){
           setUser(response.data.data.user);
           localStorage.setItem('userState', JSON.stringify(response.data.data.user));
